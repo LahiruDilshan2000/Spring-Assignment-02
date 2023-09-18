@@ -2,6 +2,7 @@ package lk.ijse.gdse.spring.service.impl;
 
 import lk.ijse.gdse.spring.dto.TechLeadDTO;
 import lk.ijse.gdse.spring.entity.TechLead;
+import lk.ijse.gdse.spring.exception.NotFoundException;
 import lk.ijse.gdse.spring.repo.TechLeadRepo;
 import lk.ijse.gdse.spring.service.TechLeadService;
 import org.modelmapper.ModelMapper;
@@ -41,7 +42,7 @@ public class TechLeadServiceImpl implements TechLeadService {
     public TechLeadDTO updateTechLead(TechLeadDTO techLeadDTO) {
 
         if (!techLeadRepo.existsById(techLeadDTO.getId()))
-            throw new RuntimeException(techLeadDTO.getId() + " Tech lead id doesn't exist !");
+            throw new NotFoundException(techLeadDTO.getId() + " Tech lead id doesn't exist !");
 
         return modelMapper.map(techLeadRepo.save(modelMapper.map(techLeadDTO, TechLead.class)), TechLeadDTO.class);
     }
@@ -50,7 +51,7 @@ public class TechLeadServiceImpl implements TechLeadService {
     public void deleteTechLeadByPk(String pk) {
 
         if (!techLeadRepo.existsById(pk))
-            throw new RuntimeException(pk + " Tech lead id doesn't exist !");
+            throw new NotFoundException(pk + " Tech lead id doesn't exist !");
 
         techLeadRepo.deleteById(pk);
     }
@@ -65,7 +66,7 @@ public class TechLeadServiceImpl implements TechLeadService {
     public TechLeadDTO searchTechLeadByPk(String pk) {
 
         if (!techLeadRepo.existsById(pk))
-            throw new RuntimeException(pk + " Tech lead id doesn't exist !");
+            throw new NotFoundException(pk + " Tech lead id doesn't exist !");
 
         return modelMapper.map(techLeadRepo.findById(pk).get(), TechLeadDTO.class);
     }
