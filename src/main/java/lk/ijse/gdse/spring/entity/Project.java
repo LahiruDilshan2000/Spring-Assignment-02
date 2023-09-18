@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Data
 @ToString
 @Entity
-public class Project implements SuperEntity{
+public class Project implements SuperEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int projectId;

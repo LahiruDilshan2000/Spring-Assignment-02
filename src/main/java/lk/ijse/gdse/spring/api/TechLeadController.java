@@ -28,8 +28,8 @@ public class TechLeadController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseUtil saveTechLead(@ModelAttribute TechLeadDTO techLeadDTO){
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseUtil saveTechLead(@RequestBody TechLeadDTO techLeadDTO){
 
         return new ResponseUtil(200, "save", techLeadService.saveTechLead(techLeadDTO));
     }
